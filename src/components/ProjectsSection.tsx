@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { projects, Project } from "@/data/portfolio";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./ProjectsSection.module.css";
@@ -9,7 +9,6 @@ export default function ProjectsSection() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [sectionRef, isVisible] = useScrollAnimation<HTMLElement>({ once: false });
     const [scrollY, setScrollY] = useState(0);
-    const sectionTopRef = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -29,10 +28,10 @@ export default function ProjectsSection() {
         document.body.style.overflow = "unset";
     };
 
-    // Calculate unique parallax offset for each card
+    // Unique wave-like parallax for each card - works on both scroll directions
     const getCardParallax = (index: number) => {
-        const speed = 0.02 + (index * 0.01);
-        return Math.sin(scrollY * 0.005 + index) * 5;
+        if (!isVisible) return 0;
+        return Math.sin(scrollY * 0.003 + index * 0.8) * 8;
     };
 
     return (
@@ -53,10 +52,10 @@ export default function ProjectsSection() {
                     {projects.map((project, index) => (
                         <div
                             key={project.id}
-                            className={`card ${styles.projectCard} scroll-reveal ${isVisible ? 'visible' : ''}`}
+                            className={`card ${styles.projectCard} scroll-reveal-scale ${isVisible ? 'visible' : ''}`}
                             style={{
                                 transitionDelay: `${0.2 + index * 0.15}s`,
-                                transform: isVisible ? `translateY(${getCardParallax(index)}px)` : 'translateY(40px)'
+                                transform: isVisible ? `translateY(${getCardParallax(index)}px) scale(1)` : 'translateY(40px) scale(0.9)'
                             }}
                         >
                             <div className={styles.cardHeader}>

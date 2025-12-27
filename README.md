@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website - Jose Inacio Savio Dias da Costa
 
-## Getting Started
+Website portfolio personal yang dibangun menggunakan Next.js dengan desain modern dan responsif.
 
-First, run the development server:
+## Teknologi yang Digunakan
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** Next.js 15
+- **Bahasa:** TypeScript
+- **Styling:** CSS Modules + CSS Variables
+- **Deployment:** Netlify
+
+---
+
+## Struktur Website
+
+| Section | Deskripsi |
+|---------|-----------|
+| **Home** | Halaman utama dengan foto profil, nama, dan deskripsi |
+| **Tentang Saya** | Latar belakang, minat, dan tujuan karier |
+| **Resume** | Pendidikan, pengalaman, dan keterampilan |
+| **Karya** | Daftar project dengan detail refleksi |
+| **Kontak** | Informasi email untuk menghubungi |
+
+---
+
+## Cara Mengedit Konten
+
+### 1. Mengganti Foto Profil
+Simpan foto ke folder `public/` dengan nama `profile.jpg`
+
+### 2. Mengganti Logo
+Simpan logo ke folder `public/` dengan nama `logo.png`
+
+### 3. Mengedit Data Personal
+Edit file `src/data/portfolio.ts`:
+
+```typescript
+// Informasi Personal
+export const personalInfo = {
+    name: "Jose Inacio Savio Dias da Costa",
+    shortName: "Savio",
+    role: "Mahasiswa Informatika",
+    tagline: "Passionate Web Developer & Tech Enthusiast",
+    email: "saviouku1997@gmail.com",
+    portfolioDescription: "...",
+};
+
+// Pendidikan
+export const education = [
+    {
+        institution: "ITB STIKOM Bali",
+        degree: "S1 Teknologi Informasi",
+        period: "2022 - Sekarang",
+        description: "...",
+    },
+];
+
+// Skills
+export const skills = {
+    technical: [
+        { name: "HTML", level: 85 },
+        { name: "CSS", level: 80 },
+        { name: "JavaScript", level: 75 },
+    ],
+    soft: ["Kerja Tim & Kepemimpinan", "Komunikasi"],
+};
+
+// Projects
+export const projects = [
+    {
+        id: "project-1",
+        title: "Nama Project",
+        type: "Project Based",
+        description: "Deskripsi project...",
+        tools: ["HTML", "CSS", "JavaScript"],
+        role: "Developer",
+        reflection: {
+            what: "Apa yang dikerjakan...",
+            soWhat: "Apa yang dipelajari...",
+            nowWhat: "Rencana selanjutnya...",
+        },
+    },
+];
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Menjalankan Secara Lokal
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Install dependencies
+npm install
 
-## Learn More
+# Jalankan development server
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Buka http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment ke Netlify
 
-## Deploy on Vercel
+Website ini sudah dikonfigurasi untuk Netlify. Setiap kali push ke GitHub, Netlify akan otomatis rebuild.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Build Settings:**
+- Build command: `npm run build`
+- Publish directory: `.next`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## File Penting
+
+| File | Fungsi |
+|------|--------|
+| `src/data/portfolio.ts` | Semua data konten website |
+| `public/profile.jpg` | Foto profil |
+| `public/logo.png` | Logo website |
+| `src/app/globals.css` | Warna dan styling global |
+
+---
+
+## Kontak
+
+Untuk pertanyaan atau bantuan, hubungi developer.
+
+© 2025 Jose Inacio Savio Dias da Costa

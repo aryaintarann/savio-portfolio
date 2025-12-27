@@ -59,7 +59,7 @@ export default function ProjectsSection() {
                                 className={`btn btn-primary ${styles.reflectionBtn}`}
                                 onClick={() => openModal(project)}
                             >
-                                Lihat Refleksi
+                                Lihat
                             </button>
                         </div>
                     ))}
@@ -86,14 +86,13 @@ export default function ProjectsSection() {
 
                         <div className={styles.reflectionContent}>
                             <h4 className={styles.reflectionTitle}>
-                                Refleksi: What – So What – Now What
+                                Tentang Project :
                             </h4>
 
                             {/* What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>1</span>
-                                    <h5 className={styles.reflectionLabel}>What</h5>
                                     <span className={styles.reflectionSubtitle}>
                                         Apa yang dikerjakan?
                                     </span>
@@ -107,7 +106,6 @@ export default function ProjectsSection() {
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>2</span>
-                                    <h5 className={styles.reflectionLabel}>So What</h5>
                                     <span className={styles.reflectionSubtitle}>
                                         Apa yang dipelajari?
                                     </span>
@@ -121,7 +119,6 @@ export default function ProjectsSection() {
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>3</span>
-                                    <h5 className={styles.reflectionLabel}>Now What</h5>
                                     <span className={styles.reflectionSubtitle}>
                                         Rencana selanjutnya?
                                     </span>

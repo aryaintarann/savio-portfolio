@@ -1,26 +1,63 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { contactInfo } from "@/data/portfolio";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./ContactSection.module.css";
 
 export default function ContactSection() {
-    const [sectionRef, isVisible] = useScrollAnimation<HTMLElement>({ once: false });
-    const [contentRef, contentVisible] = useScrollAnimation<HTMLDivElement>({ once: false, rootMargin: "0px 0px -50px 0px" });
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement | null>(null);
+
+    // Bidirectional intersection observer for scroll up/down
+    useEffect(() => {
+        const element = sectionRef.current;
+        if (!element) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.15, rootMargin: "-5% 0px -5% 0px" }
+        );
+
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <section id="contact" className={`section ${styles.contact}`} ref={sectionRef}>
             <div className="container">
                 <div className={styles.wrapper}>
-                    <div className={styles.content} ref={contentRef}>
-                        <h2 className={`section-title scroll-reveal ${isVisible ? 'visible' : ''}`}>
+                    <div className={styles.content}>
+                        <h2
+                            className="section-title"
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                                transition: 'all 0.6s ease-out'
+                            }}
+                        >
                             Hubungi Saya
                         </h2>
-                        <p className={`${styles.description} scroll-reveal ${contentVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
+                        <p
+                            className={styles.description}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                                transition: 'all 0.6s ease-out 0.1s'
+                            }}
+                        >
                             Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya melalui email di bawah ini.
                         </p>
 
-                        <div className={`${styles.emailCard} scroll-reveal-scale ${contentVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
+                        <div
+                            className={styles.emailCard}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
+                                transition: 'all 0.6s ease-out 0.2s'
+                            }}
+                        >
                             <div className={styles.emailIcon}>@</div>
                             <div className={styles.emailInfo}>
                                 <span className={styles.emailLabel}>Email</span>
@@ -35,8 +72,12 @@ export default function ContactSection() {
 
                         <a
                             href={`mailto:${contactInfo.email}`}
-                            className={`btn btn-primary ${styles.ctaBtn} scroll-reveal ${contentVisible ? 'visible' : ''}`}
-                            style={{ transitionDelay: '0.3s' }}
+                            className={`btn btn-primary ${styles.ctaBtn}`}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                                transition: 'all 0.6s ease-out 0.3s'
+                            }}
                         >
                             <span>Kirim Email</span>
                             <span className={styles.arrow}>&rarr;</span>

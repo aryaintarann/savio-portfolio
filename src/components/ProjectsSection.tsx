@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { projects, Project } from "@/data/portfolio";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./ProjectsSection.module.css";
 
 export default function ProjectsSection() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [sectionRef, isVisible] = useScrollAnimation<HTMLElement>({ once: false });
+    const [isVisible, setIsVisible] = useState(false);
     const [scrollY, setScrollY] = useState(0);
+    const sectionRef = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -16,6 +16,22 @@ export default function ProjectsSection() {
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Bidirectional intersection observer
+    useEffect(() => {
+        const element = sectionRef.current;
+        if (!element) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
+        );
+
+        observer.observe(element);
+        return () => observer.disconnect();
     }, []);
 
     const openModal = (project: Project) => {
@@ -28,7 +44,7 @@ export default function ProjectsSection() {
         document.body.style.overflow = "unset";
     };
 
-    // Unique wave-like parallax for each card - works on both scroll directions
+    // Wave-like parallax for each card
     const getCardParallax = (index: number) => {
         if (!isVisible) return 0;
         return Math.sin(scrollY * 0.003 + index * 0.8) * 8;
@@ -41,10 +57,24 @@ export default function ProjectsSection() {
             ref={sectionRef}
         >
             <div className="container">
-                <h2 className={`section-title scroll-reveal ${isVisible ? 'visible' : ''}`}>
+                <h2
+                    className="section-title"
+                    style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'all 0.6s ease-out'
+                    }}
+                >
                     Karya
                 </h2>
-                <p className={`section-subtitle scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
+                <p
+                    className="section-subtitle"
+                    style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'all 0.6s ease-out 0.1s'
+                    }}
+                >
                     Proyek yang telah saya kerjakan
                 </p>
 
@@ -52,10 +82,13 @@ export default function ProjectsSection() {
                     {projects.map((project, index) => (
                         <div
                             key={project.id}
-                            className={`card ${styles.projectCard} scroll-reveal-scale ${isVisible ? 'visible' : ''}`}
+                            className={`card ${styles.projectCard}`}
                             style={{
-                                transitionDelay: `${0.2 + index * 0.15}s`,
-                                transform: isVisible ? `translateY(${getCardParallax(index)}px) scale(1)` : 'translateY(40px) scale(0.9)'
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible
+                                    ? `translateY(${getCardParallax(index)}px) scale(1)`
+                                    : 'translateY(50px) scale(0.95)',
+                                transition: `all 0.6s ease-out ${0.2 + index * 0.1}s`
                             }}
                         >
                             <div className={styles.cardHeader}>
@@ -115,7 +148,6 @@ export default function ProjectsSection() {
                                 Tentang Project :
                             </h4>
 
-                            {/* What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>1</span>
@@ -128,7 +160,6 @@ export default function ProjectsSection() {
                                 </p>
                             </div>
 
-                            {/* So What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>2</span>
@@ -141,7 +172,6 @@ export default function ProjectsSection() {
                                 </p>
                             </div>
 
-                            {/* Now What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>3</span>

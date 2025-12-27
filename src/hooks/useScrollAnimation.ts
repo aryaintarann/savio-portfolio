@@ -5,13 +5,13 @@ import { useEffect, useRef, useState, RefObject } from "react";
 interface UseScrollAnimationOptions {
     threshold?: number;
     rootMargin?: string;
-    once?: boolean; // If false, animation will reverse when scrolling back
+    once?: boolean;
 }
 
 export function useScrollAnimation<T extends HTMLElement>(
     options: UseScrollAnimationOptions = {}
 ): [RefObject<T | null>, boolean] {
-    const { threshold = 0.1, rootMargin = "0px 0px -50px 0px", once = false } = options;
+    const { threshold = 0.15, rootMargin = "-10% 0px -10% 0px", once = false } = options;
     const ref = useRef<T | null>(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -21,14 +21,14 @@ export function useScrollAnimation<T extends HTMLElement>(
 
         const observer = new IntersectionObserver(
             ([entry]) => {
+                // Always update visibility based on intersection state for bidirectional animation
                 if (once) {
-                    // Only animate once
                     if (entry.isIntersecting) {
                         setIsVisible(true);
                         observer.unobserve(element);
                     }
                 } else {
-                    // Animate in both directions
+                    // Bidirectional: true when in view, false when out of view
                     setIsVisible(entry.isIntersecting);
                 }
             },
@@ -50,7 +50,7 @@ export function useMultiScrollAnimation(
 ): [RefObject<HTMLDivElement | null>, boolean[]] {
     const ref = useRef<HTMLDivElement | null>(null);
     const [visibleItems, setVisibleItems] = useState<boolean[]>(Array(count).fill(false));
-    const { threshold = 0.1, rootMargin = "0px 0px -30px 0px", once = false } = options;
+    const { threshold = 0.1, rootMargin = "-5% 0px -5% 0px", once = false } = options;
 
     useEffect(() => {
         const element = ref.current;
@@ -59,7 +59,7 @@ export function useMultiScrollAnimation(
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    // Stagger the visibility
+                    // Stagger the visibility when entering view
                     for (let i = 0; i < count; i++) {
                         setTimeout(() => {
                             setVisibleItems(prev => {
@@ -73,7 +73,7 @@ export function useMultiScrollAnimation(
                         observer.unobserve(element);
                     }
                 } else if (!once) {
-                    // Hide all items when scrolling away
+                    // Hide all items when scrolling out of view (scroll up)
                     setVisibleItems(Array(count).fill(false));
                 }
             },

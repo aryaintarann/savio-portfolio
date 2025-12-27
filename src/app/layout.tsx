@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     "JavaScript",
   ],
   authors: [{ name: "Jose Inacio Savio Dias da Costa" }],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "Jose Inacio Savio Dias da Costa | Portfolio",
     description:

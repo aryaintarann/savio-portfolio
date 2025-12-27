@@ -1,11 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { projects, Project } from "@/data/portfolio";
 import styles from "./ProjectsSection.module.css";
 
 export default function ProjectsSection() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [isVisible, setIsVisible] = useState(false);
+    const [scrollY, setScrollY] = useState(0);
+    const sectionRef = useRef<HTMLElement | null>(null);
+
+    // Track scroll position and element visibility
+    useEffect(() => {
+        const checkVisibility = () => {
+            if (!sectionRef.current) return;
+
+            const rect = sectionRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Element is visible if it's in the viewport
+            // Trigger when top of element is within 80% of viewport from bottom
+            // And hide when bottom of element is above 20% of viewport from top
+            const visible = rect.top < windowHeight * 0.85 && rect.bottom > windowHeight * 0.15;
+
+            setIsVisible(visible);
+            setScrollY(window.scrollY);
+        };
+
+        checkVisibility();
+        window.addEventListener("scroll", checkVisibility, { passive: true });
+        window.addEventListener("resize", checkVisibility, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", checkVisibility);
+            window.removeEventListener("resize", checkVisibility);
+        };
+    }, []);
 
     const openModal = (project: Project) => {
         setSelectedProject(project);
@@ -17,11 +47,37 @@ export default function ProjectsSection() {
         document.body.style.overflow = "unset";
     };
 
+    // Wave-like parallax for each card
+    const getCardParallax = (index: number) => {
+        if (!isVisible) return 0;
+        return Math.sin(scrollY * 0.003 + index * 0.8) * 8;
+    };
+
     return (
-        <section id="projects" className={`section ${styles.projects}`}>
+        <section
+            id="projects"
+            className={`section ${styles.projects}`}
+            ref={sectionRef}
+        >
             <div className="container">
-                <h2 className="section-title">Karya</h2>
-                <p className="section-subtitle">
+                <h2
+                    className="section-title"
+                    style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'all 0.5s ease-out'
+                    }}
+                >
+                    Karya
+                </h2>
+                <p
+                    className="section-subtitle"
+                    style={{
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'all 0.5s ease-out 0.1s'
+                    }}
+                >
                     Proyek yang telah saya kerjakan
                 </p>
 
@@ -30,7 +86,13 @@ export default function ProjectsSection() {
                         <div
                             key={project.id}
                             className={`card ${styles.projectCard}`}
-                            style={{ animationDelay: `${index * 0.1}s` }}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible
+                                    ? `translateY(${getCardParallax(index)}px) scale(1)`
+                                    : 'translateY(50px) scale(0.95)',
+                                transition: `all 0.5s ease-out ${0.15 + index * 0.08}s`
+                            }}
                         >
                             <div className={styles.cardHeader}>
                                 <span className={`tag ${styles.projectType}`}>{project.type}</span>
@@ -89,7 +151,6 @@ export default function ProjectsSection() {
                                 Tentang Project :
                             </h4>
 
-                            {/* What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>1</span>
@@ -102,7 +163,6 @@ export default function ProjectsSection() {
                                 </p>
                             </div>
 
-                            {/* So What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>2</span>
@@ -115,7 +175,6 @@ export default function ProjectsSection() {
                                 </p>
                             </div>
 
-                            {/* Now What */}
                             <div className={styles.reflectionItem}>
                                 <div className={styles.reflectionHeader}>
                                     <span className={styles.reflectionIcon}>3</span>

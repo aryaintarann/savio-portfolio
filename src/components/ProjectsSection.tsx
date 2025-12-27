@@ -22,7 +22,7 @@ export default function ProjectsSection() {
             <div className="container">
                 <h2 className="section-title">Karya</h2>
                 <p className="section-subtitle">
-                    Koleksi proyek dan studi kasus yang telah saya kerjakan beserta refleksi pembelajaran
+                    Proyek yang telah saya kerjakan
                 </p>
 
                 <div className={styles.grid}>

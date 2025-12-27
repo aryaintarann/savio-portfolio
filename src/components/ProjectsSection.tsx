@@ -10,28 +10,31 @@ export default function ProjectsSection() {
     const [scrollY, setScrollY] = useState(0);
     const sectionRef = useRef<HTMLElement | null>(null);
 
+    // Track scroll position and element visibility
     useEffect(() => {
-        const handleScroll = () => {
+        const checkVisibility = () => {
+            if (!sectionRef.current) return;
+
+            const rect = sectionRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            // Element is visible if it's in the viewport
+            // Trigger when top of element is within 80% of viewport from bottom
+            // And hide when bottom of element is above 20% of viewport from top
+            const visible = rect.top < windowHeight * 0.85 && rect.bottom > windowHeight * 0.15;
+
+            setIsVisible(visible);
             setScrollY(window.scrollY);
         };
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
-    // Bidirectional intersection observer
-    useEffect(() => {
-        const element = sectionRef.current;
-        if (!element) return;
+        checkVisibility();
+        window.addEventListener("scroll", checkVisibility, { passive: true });
+        window.addEventListener("resize", checkVisibility, { passive: true });
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            { threshold: 0.1, rootMargin: "-5% 0px -5% 0px" }
-        );
-
-        observer.observe(element);
-        return () => observer.disconnect();
+        return () => {
+            window.removeEventListener("scroll", checkVisibility);
+            window.removeEventListener("resize", checkVisibility);
+        };
     }, []);
 
     const openModal = (project: Project) => {
@@ -62,7 +65,7 @@ export default function ProjectsSection() {
                     style={{
                         opacity: isVisible ? 1 : 0,
                         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                        transition: 'all 0.6s ease-out'
+                        transition: 'all 0.5s ease-out'
                     }}
                 >
                     Karya
@@ -72,7 +75,7 @@ export default function ProjectsSection() {
                     style={{
                         opacity: isVisible ? 1 : 0,
                         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                        transition: 'all 0.6s ease-out 0.1s'
+                        transition: 'all 0.5s ease-out 0.1s'
                     }}
                 >
                     Proyek yang telah saya kerjakan
@@ -88,7 +91,7 @@ export default function ProjectsSection() {
                                 transform: isVisible
                                     ? `translateY(${getCardParallax(index)}px) scale(1)`
                                     : 'translateY(50px) scale(0.95)',
-                                transition: `all 0.6s ease-out ${0.2 + index * 0.1}s`
+                                transition: `all 0.5s ease-out ${0.15 + index * 0.08}s`
                             }}
                         >
                             <div className={styles.cardHeader}>

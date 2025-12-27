@@ -8,20 +8,28 @@ export default function ContactSection() {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement | null>(null);
 
-    // Bidirectional intersection observer for scroll up/down
+    // Track scroll position and element visibility using getBoundingClientRect
     useEffect(() => {
-        const element = sectionRef.current;
-        if (!element) return;
+        const checkVisibility = () => {
+            if (!sectionRef.current) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting);
-            },
-            { threshold: 0.15, rootMargin: "-5% 0px -5% 0px" }
-        );
+            const rect = sectionRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
 
-        observer.observe(element);
-        return () => observer.disconnect();
+            // Element is visible when it's in the viewport
+            const visible = rect.top < windowHeight * 0.85 && rect.bottom > windowHeight * 0.15;
+
+            setIsVisible(visible);
+        };
+
+        checkVisibility();
+        window.addEventListener("scroll", checkVisibility, { passive: true });
+        window.addEventListener("resize", checkVisibility, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", checkVisibility);
+            window.removeEventListener("resize", checkVisibility);
+        };
     }, []);
 
     return (
@@ -34,7 +42,7 @@ export default function ContactSection() {
                             style={{
                                 opacity: isVisible ? 1 : 0,
                                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                                transition: 'all 0.6s ease-out'
+                                transition: 'all 0.5s ease-out'
                             }}
                         >
                             Hubungi Saya
@@ -44,7 +52,7 @@ export default function ContactSection() {
                             style={{
                                 opacity: isVisible ? 1 : 0,
                                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                                transition: 'all 0.6s ease-out 0.1s'
+                                transition: 'all 0.5s ease-out 0.1s'
                             }}
                         >
                             Tertarik untuk berkolaborasi atau memiliki pertanyaan? Jangan ragu untuk menghubungi saya melalui email di bawah ini.
@@ -55,7 +63,7 @@ export default function ContactSection() {
                             style={{
                                 opacity: isVisible ? 1 : 0,
                                 transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
-                                transition: 'all 0.6s ease-out 0.2s'
+                                transition: 'all 0.5s ease-out 0.2s'
                             }}
                         >
                             <div className={styles.emailIcon}>@</div>
@@ -76,7 +84,7 @@ export default function ContactSection() {
                             style={{
                                 opacity: isVisible ? 1 : 0,
                                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                                transition: 'all 0.6s ease-out 0.3s'
+                                transition: 'all 0.5s ease-out 0.3s'
                             }}
                         >
                             <span>Kirim Email</span>

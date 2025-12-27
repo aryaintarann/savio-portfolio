@@ -5,7 +5,11 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
-    const [sectionRef, isVisible] = useScrollAnimation<HTMLElement>();
+    // Bidirectional animation - animates in when scrolling down, out when scrolling up
+    const [sectionRef, isVisible] = useScrollAnimation<HTMLElement>({ once: false });
+    const [card1Ref, card1Visible] = useScrollAnimation<HTMLDivElement>({ once: false, rootMargin: "0px 0px -100px 0px" });
+    const [card2Ref, card2Visible] = useScrollAnimation<HTMLDivElement>({ once: false, rootMargin: "0px 0px -100px 0px" });
+    const [card3Ref, card3Visible] = useScrollAnimation<HTMLDivElement>({ once: false, rootMargin: "0px 0px -100px 0px" });
 
     return (
         <section
@@ -23,7 +27,10 @@ export default function AboutSection() {
 
                 <div className={styles.grid}>
                     {/* Background Card */}
-                    <div className={`card ${styles.card} scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
+                    <div
+                        ref={card1Ref}
+                        className={`card ${styles.card} scroll-reveal-scale ${card1Visible ? 'visible' : ''}`}
+                    >
                         <div className={styles.cardIcon}>01</div>
                         <h3 className={styles.cardTitle}>Latar Belakang</h3>
                         <div className={styles.infoItem}>
@@ -41,7 +48,11 @@ export default function AboutSection() {
                     </div>
 
                     {/* Interests Card */}
-                    <div className={`card ${styles.card} scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.3s' }}>
+                    <div
+                        ref={card2Ref}
+                        className={`card ${styles.card} scroll-reveal-scale ${card2Visible ? 'visible' : ''}`}
+                        style={{ transitionDelay: '0.15s' }}
+                    >
                         <div className={styles.cardIcon}>02</div>
                         <h3 className={styles.cardTitle}>Minat &amp; Ketertarikan</h3>
                         <div className={styles.tagList}>
@@ -54,7 +65,11 @@ export default function AboutSection() {
                     </div>
 
                     {/* Goals Card */}
-                    <div className={`card ${styles.card} scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
+                    <div
+                        ref={card3Ref}
+                        className={`card ${styles.card} scroll-reveal-scale ${card3Visible ? 'visible' : ''}`}
+                        style={{ transitionDelay: '0.3s' }}
+                    >
                         <div className={styles.cardIcon}>03</div>
                         <h3 className={styles.cardTitle}>Tujuan Karier</h3>
                         <ul className={styles.goalsList}>

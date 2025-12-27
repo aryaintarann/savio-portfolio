@@ -1,0 +1,137 @@
+.about {
+    background: var(--color-bg-secondary);
+    position: relative;
+    text-align: center;
+}
+
+.about .section-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.cardIcon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.cardTitle {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.infoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.infoItem:last-of-type {
+    border-bottom: none;
+}
+
+.label {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.value {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.goalsList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.goalItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.goalIcon {
+    color: var(--color-accent-primary);
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card:nth-child(3) {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card:nth-child(3) {
+        grid-column: span 1;
+    }
+}

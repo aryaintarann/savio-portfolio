@@ -1,0 +1,168 @@
+.contact {
+    background: var(--color-bg-primary);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.emailCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    transition: all var(--transition-normal);
+}
+
+.emailCard:hover {
+    background: var(--color-bg-card-hover);
+    border-color: var(--color-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.emailIcon {
+    font-size: 2.5rem;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e7ff;
+    color: var(--color-accent-primary);
+    border-radius: var(--radius-lg);
+}
+
+.emailInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.emailLabel {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.emailLink {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.emailLink:hover {
+    color: var(--color-accent-primary);
+}
+
+.ctaBtn {
+    display: inline-flex;
+    gap: var(--spacing-sm);
+}
+
+.arrow {
+    transition: transform var(--transition-fast);
+}
+
+.ctaBtn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Decorative Elements */
+.decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    pointer-events: none;
+}
+
+.decorCircle1 {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.decorCircle2 {
+    position: absolute;
+    bottom: 20%;
+    right: 30%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.decorGrid {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .decoration {
+        display: none;
+    }
+
+    .emailCard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .emailInfo {
+        align-items: center;
+    }
+
+    .emailLink {
+        font-size: var(--font-size-lg);
+        word-break: break-all;
+    }
+
+    .ctaBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}

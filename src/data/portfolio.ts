@@ -5,10 +5,10 @@ export const personalInfo = {
     name: "Jose Inacio Savio Dias da Costa",
     shortName: "Savio",
     role: "Mahasiswa Informatika",
-    tagline: "Passionate Web Developer & Tech Enthusiast",
+    tagline: "Entrepreneur & E-sport Player",
     email: "saviouku1997@gmail.com",
     portfolioDescription:
-        "Portofolio ini menampilkan perjalanan saya dalam mempelajari pengembangan web dan teknologi. Setiap karya di sini merupakan hasil pembelajaran dan pengalaman yang membentuk kemampuan saya.",
+        "Saya adalah seorang Entrepreneur dan Atlet E-sport yang berdedikasi. Saya menggabungkan ketajaman strategi bisnis dengan mentalitas kompetitif dan kerja sama tim yang solid. Bagi saya, baik di ruang rapat maupun di arena pertandingan, keberhasilan ditentukan oleh persiapan matang, eksekusi cepat, dan inovasi tanpa henti.",
 };
 
 export const aboutMe = {
@@ -18,15 +18,13 @@ export const aboutMe = {
         university: "ITB STIKOM Bali",
     },
     interests: [
-        "Pengembangan Web",
-        "UI/UX Design",
+        "Pengembangan Bisnis",
+        "E-Sport",
         "Teknologi & Inovasi",
-        "Problem Solving",
     ],
     goals: [
-        "Menjadi Full-Stack Web Developer yang kompeten",
-        "Berkontribusi dalam proyek-proyek teknologi yang berdampak",
-        "Terus belajar dan mengembangkan kemampuan di bidang IT",
+        "Membangun ekosistem bisnis yang berkelanjutan dengan memanfaatkan disiplin dan pola pikir strategis dari dunia E-sport",
+        "Mencapai puncak performa kompetitif sebagai atlet E-sport profesional sembari mengembangkan portofolio bisnis yang berdampak luas",
     ],
 };
 
@@ -35,15 +33,15 @@ export const education = [
         institution: "ITB STIKOM Bali",
         degree: "S1 Teknologi Informasi",
         period: "2022 - Sekarang",
-        description: "Fokus pada pengembangan web dan pemrograman",
+        description: "",
     },
 ];
 
 export const skills = {
     technical: [
-        { name: "HTML", level: 85 },
-        { name: "CSS", level: 80 },
-        { name: "JavaScript", level: 75 },
+        { name: "Microsft Office", level: 85 },
+        { name: "MySQL", level: 80 },
+        { name: "Editing Video", level: 75 },
     ],
     softSkills: [
         {
@@ -64,7 +62,19 @@ export const experiences = [
         title: "Aset Management",
         organization: "ITB STIKOM Bali",
         period: "2024 - 2025",
-        description: "Membantu pemerintahan Kota Badung dalam pengelolaan aset",
+        description: "",
+    },
+    {
+        title: "Tour Guide",
+        organization: "Savio Travel",
+        period: "2023 - 2025",
+        description: "",
+    },
+    {
+        title: "Seller",
+        organization: "Savio Jastip",
+        period: "2025 - Sekarang",
+        description: "",
     },
 ];
 
@@ -86,18 +96,18 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "project-1",
-        title: "Manajemen Bisnis SamagriTech",
-        type: "Project Based",
+        title: "Savio Jastip",
+        type: "Case Based",
         description:
-            "Proyek ini adalah manajemen bisnis yang saya lakukan untuk memperoleh nilai tambah bagi bisnis saya.",
-        tools: ["HTML", "CSS", "JavaScript"],
-        role: "Frontend Developer - Fokus pada desain antarmuka pengguna dan pengalaman pengguna (UX)",
+            "Proyek ini adalah salah satu binis yang saya buat berdasarkan studi kasus yang saya dapatkan dari lingkuhan saya di Timor Leste.",
+        tools: ["Instagram", "Whatsapp"],
+        role: "Owner",
         reflection: {
-            what: "Saya menganalisis kebutuhan sistem perpustakaan dan merancang antarmuka pengguna yang intuitif. Mengimplementasikan fitur pencarian buku dengan filter kategori dan status ketersediaan menggunakan JavaScript.",
+            what: "Saya membangun ekosistem bisnis Savio Jastip yang menghubungkan permintaan pelanggan dengan akses produk dari berbagai lokasi. Saya mengelola operasional end-to-end, mulai dari strategi pemasaran digital, manajemen pesanan, hingga koordinasi logistik untuk memastikan barang sampai tepat waktu.",
             soWhat:
-                "Proyek ini mengajarkan saya tentang pentingnya user research sebelum mendesain. Saya memahami bahwa UX yang baik dimulai dari memahami kebutuhan pengguna. Saya juga belajar tentang state management sederhana untuk mengelola data buku.",
+                "Saya belajar banyak tentang Manajemen Rantai Pasok (Supply Chain) skala mikro dan Customer Relationship Management (CRM). Saya memahami bahwa kunci bisnis jasa bukan hanya pada barangnya, tetapi pada kecepatan respons dan kualitas komunikasi untuk membangun loyalitas pelanggan.",
             nowWhat:
-                "Saya berencana memperdalam pengetahuan tentang UX/UI design dan mempelajari tools seperti Figma. Untuk pengembangan teknis, saya ingin mengintegrasikan sistem ini dengan REST API dan menggunakan database yang sebenarnya.",
+                "Saya berencana melakukan scaling bisnis dengan memperluas jangkauan area belanja dan jenis produk. Untuk mendukung ini, saya akan mengembangkan sistem inventarisasi berbasis digital untuk mengurangi human error dalam pencatatan manual.",
         },
     },
     {
@@ -114,6 +124,22 @@ export const projects: Project[] = [
                 "Proyek ini memperdalam pemahaman saya tentang CSS modern. Saya belajar bahwa animasi yang halus dapat meningkatkan pengalaman pengguna secara signifikan. Juga memahami pentingnya performance optimization untuk animasi.",
             nowWhat:
                 "Saya ingin mempelajari library animasi seperti GSAP dan Framer Motion untuk animasi yang lebih kompleks. Juga berencana mengeksplorasi CSS-in-JS dan styled-components untuk styling yang lebih terstruktur.",
+        },
+    },
+    {
+        id: "project-3",
+        title: "Tour Guide Denpasar - Kuta",
+        type: "Project Based",
+        description:
+            "Melakukan Tour Guide dengan tamu dari Timor Leste di Denpasar - Kuta.",
+        tools: ["Whatsapp"],
+        role: "Tour Guide",
+        reflection: {
+            what: "Saya mengorganisir dan memandu perjalanan wisata untuk tamu dari Timor Leste dengan rute strategis Denpasar hingga Kuta. Tugas saya mencakup penyusunan itinerary yang fleksibel, mulai dari wisata belanja di pusat kota Denpasar hingga menikmati sunset dan kuliner di Kuta, serta memastikan kenyamanan transportasi dan akomodasi tamu selama perjalanan.",
+            soWhat:
+                "Proyek ini mengajarkan saya inti dari Hospitality Service dan Cross-Cultural Communication. Saya belajar memahami preferensi spesifik pasar Timor Leste—yang seringkali mengutamakan keakraban dan rekomendasi belanja yang bernilai. Saya juga melatih kemampuan manajemen krisis (problem solving) saat menghadapi tantangan logistik di lapangan seperti kemacetan area wisata.",
+            nowWhat:
+                "Saya berencana mengembangkan layanan ini menjadi paket Premium Private Tour khusus pasar Timor Leste dengan cakupan area yang lebih luas (seperti Uluwatu atau Ubud). Saya juga ingin membangun kemitraan (B2B) dengan agen perjalanan di Dili untuk menciptakan aliran tamu yang lebih rutin dan sistematis.",
         },
     },
 ];

@@ -12,14 +12,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Jose Inacio Savio Dias da Costa | Portfolio",
   description:
-    "Portofolio Jose Inacio Savio Dias da Costa - Mahasiswa Informatika yang passionate dalam pengembangan web. Lihat karya dan refleksi pembelajaran saya.",
+    "Portofolio Jose Inacio Savio Dias da Costa.",
   keywords: [
-    "portfolio",
-    "web developer",
-    "mahasiswa informatika",
-    "HTML",
-    "CSS",
-    "JavaScript",
+    "entrepreneur",
+    "e-sport player",
+    "Mahasiswa",
   ],
   authors: [{ name: "Jose Inacio Savio Dias da Costa" }],
   icons: {
@@ -29,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Jose Inacio Savio Dias da Costa | Portfolio",
     description:
-      "Portofolio Mahasiswa Informatika - Web Developer yang passionate dalam pengembangan web.",
+      "",
     type: "website",
   },
 };

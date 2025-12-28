@@ -114,10 +114,10 @@ npm run dev
 export const personalInfo = {
     name: "Jose Inacio Savio Dias da Costa",
     shortName: "Savio",
-    role: "Mahasiswa Informatika",
-    tagline: "Passionate Web Developer",
+    role: "Mahasiswa ",
+    tagline: "Entrepreneur & E-sport Player",
     email: "saviouku1997@gmail.com",
-    portfolioDescription: "Deskripsi...",
+    portfolioDescription: "",
 };
 ```
 

@@ -4,7 +4,7 @@
 export const personalInfo = {
     name: "Jose Inacio Savio Dias da Costa",
     shortName: "Savio",
-    role: "Mahasiswa Informatika",
+    role: "Mahasiswa",
     tagline: "Entrepreneur & E-sport Player",
     email: "saviouku1997@gmail.com",
     portfolioDescription:

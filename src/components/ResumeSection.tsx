@@ -67,7 +67,7 @@ export default function ResumeSection() {
                         <div className={`card ${styles.skillCard} scroll-reveal-scale ${skillsVisible ? 'visible' : ''}`}>
                             <h3 className={styles.columnTitle}>
                                 <span className={styles.icon}>01</span>
-                                Keterampilan Teknis
+                                Hard Skills
                             </h3>
                             <div className={styles.skillsList}>
                                 {skills.technical.map((skill, index) => (
@@ -94,7 +94,7 @@ export default function ResumeSection() {
                         <div className={`card ${styles.skillCard} scroll-reveal-scale ${skillsVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
                             <h3 className={styles.columnTitle}>
                                 <span className={styles.icon}>02</span>
-                                Keterampilan Non-Teknis
+                                Soft Skills
                             </h3>
                             <div className={styles.softSkillsList}>
                                 {skills.softSkills.map((skill, index) => (
